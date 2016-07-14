@@ -1,0 +1,185 @@
+$any-color: #bbb;
+$any-hover-color: #666;
+
+.field-info {
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 3px;
+  line-height: 18px;
+  box-sizing: border-box;
+  height: 20px;
+  margin-bottom: 0;
+  margin-right: 3px;
+  padding: 1px 3px;
+  font-size: 11px;
+  border: 1px solid transparent;
+  user-select: none;
+  overflow: hidden;
+
+  .type-caret {
+    flex-shrink: 0;
+  }
+
+  .type {
+    font-size: 0.8rem;
+    margin-right: 3px;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
+  .icon-hash {
+    margin-top: 1px;
+    &:before {
+      content: "#";
+      padding-left: 2px;
+      padding-right: 2px;
+      font-family: sans-serif;
+      font-size: 1rem;
+    }
+  }
+
+  .field-info-text {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .field-func, .field-count {
+    flex-shrink: 0;
+    margin-right: 3px;
+  }
+}
+
+.field-func, .field-count{
+  text-transform: uppercase;
+  font-weight: bold;
+
+  font-size: 11px;
+  &.any {
+    color: $any-color;
+  }
+}
+
+.field-info .field-name {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.hasfunc {
+    &::before {
+      content:"("
+    }
+    &::after {
+      content:")"
+    }
+    &.any::before, &.any::after {
+      color: $any-color;
+    }
+  }
+}
+
+.field-info {
+  .fa.fa-caret-down, .fa.fa-times {
+    flex-shrink:0;
+    // visibility: hidden;
+    border-radius: 3px;
+    margin-top: 1px;
+  }
+  .fa.fa-caret-down {
+    padding: 2px 3px 1px;
+  }
+  .fa.fa-times {
+    padding: 1px 2px;
+  }
+
+  .type-caret .fa-caret-down {
+    visibility:hidden;
+  }
+
+  .type-caret.active {
+    color: black;
+    cursor: pointer;
+    .fa-caret-down {
+      visibility: visible;
+    }
+  }
+
+  .type-caret.active:hover .fa.fa-caret-down, .fa.fa-times:hover,
+  &:hover .type-caret.active:hover .fa.fa-caret-down,
+  &.highlighted .type-caret.active:hover .fa.fa-caret-down {
+    color: white;
+    background-color: #999;
+  }
+
+  .type-caret.drop-enabled .fa.fa-caret-down {
+    background-color: #bbb;
+    color: black;
+  }
+}
+
+.field-info .info {
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.field-info.unselected {
+  border: 1px dashed #ddd;
+  background-color: #fafafa;
+}
+
+.field-info.selected {
+  border: 1px solid #ddd;
+  background-color: hsla(0,0%,93%,0.8);
+  font-weight: 500;
+}
+
+.field-info.pill {
+  background-color: hsla(0,0%,93%,0.8);
+  font-weight: 500;
+}
+
+.field-info.list-item {
+  margin-bottom: 4px;
+}
+
+.field-info.highlighted,
+.field-list-item:hover .field-info {
+  border: 1px solid #FFE14A;
+  background-color: #FFE14A;
+  font-weight: 500;
+
+  .field-func, .field-count{
+    &.any {
+      color: $any-hover-color;
+    }
+  }
+
+  .field-info .field-name.hasfunc {
+    &.any::before, &.any::after {
+      color: $any-hover-color;
+    }
+  }
+}
+
+.field-info.ui-draggable-dragging {
+  min-width: 150px;
+  width: auto;
+  box-shadow: 2px 2px 1px rgba(0,0,0,0.2);
+
+  .info {
+    display: none;
+  }
+}
+
+.tooltip-content {
+  max-width: 300px;
+  strong {
+    width: 75px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 5px;
+  }
+}
+
+
