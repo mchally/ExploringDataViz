@@ -1,4 +1,4 @@
-var clusterfck = require("clusterfck");
+//var clusterfck = require("clusterfck");
 
 var specs = [{"encoding":{"y":{"field":"Cylinders","type":"ordinal","primitiveType":"integer","_any":false,"$$hashKey":"object:27"},"x":{"field":"*","aggregate":"count","type":"quantitative","title":"Number of Records"}},"config":{},"mark":"point","data":{"url":"data/cars.json"},"_info":{"score":0.7524,"features":[{"reason":"x=count_*,Q [ ]","score":1},{"reason":"y=Cylinders,O [ ]","score":0.99},{"reason":"OxQ plot","score":0.8},{"reason":"mark=point","score":0.95}]}},{"encoding":{"y":{"field":"Cylinders","type":"ordinal","primitiveType":"integer","_any":false,"$$hashKey":"object:27"},"x":{"field":"*","aggregate":"count","type":"quantitative","title":"Number of Records"}},"config":{},"mark":"bar","data":{"url":"data/cars.json"},"_info":{"score":0.76824,"features":[{"reason":"x=count_*,Q [ ]","score":1},{"reason":"y=Cylinders,O [ ]","score":0.99},{"reason":"OxQ plot","score":0.8},{"reason":"mark=bar","score":0.97}]}},{"encoding":{"row":{"field":"Cylinders","type":"ordinal","primitiveType":"integer","_any":false,"$$hashKey":"object:27"},"text":{"field":"*","aggregate":"count","type":"quantitative","title":"Number of Records"},"color":{"field":"*","aggregate":"count","type":"quantitative","title":"Number of Records"}},"config":{},"mark":"text","data":{"url":"data/cars.json"},"_info":{"score":0.4,"features":[{"reason":"row=Cylinders,O [ ]","score":1},{"reason":"color=count_*,Q [ ] | text=count_*,Q [ ]","score":0.5},{"reason":"mark=text","score":0.8}]}},{"encoding":{"column":{"field":"Cylinders","type":"ordinal","primitiveType":"integer","_any":false,"$$hashKey":"object:27"},"text":{"field":"*","aggregate":"count","type":"quantitative","title":"Number of Records"},"color":{"field":"*","aggregate":"count","type":"quantitative","title":"Number of Records"}},"config":{},"mark":"text","data":{"url":"data/cars.json"},"_info":{"score":0.4,"features":[{"reason":"column=Cylinders,O [ ]","score":1},{"reason":"color=count_*,Q [ ] | text=count_*,Q [ ]","score":0.5},{"reason":"mark=text","score":0.8}]}}];
 
@@ -16,8 +16,13 @@ var colors = [
 
 //cluster
 //default #ofclusters = Math.sqrt(n/2) n is #ofvectors
-var clusters = clusterfck.kmeans(colors,3);
-console.log(clusters)
+var clusters1 = clusterfck.kmeans(specs,3);
+var clusters2 = clusterfck.hcluster(specs);
+
+console.log(clusters1);
+console.log(clusters2);
+console.log(JSON.stringify(clusters1));
+console.log(JSON.stringify(clusters2));
 
 // //Classifcation
 // var kmeans = new clusterfck.Kmeans();
@@ -50,6 +55,7 @@ console.log(clusters)
 // var clusters = kmeans.cluster(colors,3);
 // var centroids = kmeans.centroids;
 // var k = centroids.length;
+
 
 
 
